@@ -30,13 +30,14 @@
 
   "testling"          : {
                           "harness":  "mocha-bdd",
+                          "scripts":  "node_modules/es5-shim/es5-shim.js",
                           "files":    "test/browser/*.js",
                           "browsers": [
                               "ie/6..latest",
                               "chrome/27..latest",
-                              "firefox/24..latest",
-                              "safari/5..latest",
-                              "opera/11.0..latest",
+                              "firefox/24.0..latest",
+                              "safari/5.1..latest",
+                              "opera/11.6..latest",
                               "iphone/6",
                               "ipad/6",
                               "android-browser/latest"
