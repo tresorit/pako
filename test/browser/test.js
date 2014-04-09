@@ -1,15 +1,22 @@
-/*global describe, it, pako, assert*/
+// Browser tests - reduced version, only generic, to test that browsers are ok.
 
-
+/*global describe, it*/
 'use strict';
 
+var assert  = require('assert');
+var pako    = require('../../');
+
+
+// Helpers
+////////////////////////////////////////////////////////////////////////////////
 
 var size = 100*1000;
 
 var data_bin = (typeof Uint8Array !== 'undefined') ? new Uint8Array(size) : new Array(size);
-
+// Fill with random content
 for (var i=data_bin.length-1; i>=0; i--) { data_bin[i] = (Math.random(256)*256) & 0xff; }
 
+// helper
 var cmp = function (a, b) {
   if (a.length !== b.length) { return false; }
   for (var i=0, l=a.length; i<l; i++) { if (a[i] !== b[i]) { return false; } }
@@ -17,7 +24,10 @@ var cmp = function (a, b) {
 };
 
 
-describe('Generic', function () {
+// Tests
+////////////////////////////////////////////////////////////////////////////////
+
+describe('Generic tests', function () {
 
   it('defaults', function() {
     assert(cmp(data_bin, pako.inflate(pako.deflate(data_bin))));
@@ -25,6 +35,7 @@ describe('Generic', function () {
 
 
   describe('levels', function() {
+
     it('0', function() {
       assert(cmp(data_bin, pako.inflate(pako.deflate(data_bin, { level: 0 }))));
     });
@@ -37,6 +48,8 @@ describe('Generic', function () {
     it('6', function() {
       assert(cmp(data_bin, pako.inflate(pako.deflate(data_bin, { level: 6 }))));
     });
+
   });
+
 });
 

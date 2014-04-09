@@ -1,4 +1,6 @@
 {
+  "es3": true,
+
   // Enforcing Options /////////////////////////////////////////////////////////
 
   "bitwise"       : false,   // Prohibit bitwise operators (&, |, ^, etc.).
